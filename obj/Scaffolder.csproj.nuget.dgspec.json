@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jamie/Code/TMtTechTest/Scaffolder.csproj": {}
+    "/Users/jamie/Code/.NetScaffold/Scaffolder.csproj": {}
   },
   "projects": {
-    "/Users/jamie/Code/TMtTechTest/Scaffolder.csproj": {
+    "/Users/jamie/Code/.NetScaffold/Scaffolder.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jamie/Code/TMtTechTest/Scaffolder.csproj",
+        "projectUniqueName": "/Users/jamie/Code/.NetScaffold/Scaffolder.csproj",
         "projectName": "Scaffolder",
-        "projectPath": "/Users/jamie/Code/TMtTechTest/Scaffolder.csproj",
+        "projectPath": "/Users/jamie/Code/.NetScaffold/Scaffolder.csproj",
         "packagesPath": "/Users/jamie/.nuget/packages/",
-        "outputPath": "/Users/jamie/Code/TMtTechTest/obj/",
+        "outputPath": "/Users/jamie/Code/.NetScaffold/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/jamie/.nuget/NuGet/NuGet.Config"
@@ -40,7 +40,7 @@
           "dependencies": {
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[8.1.0, )"
             },
             "Microsoft.AspNetCore.JsonPatch": {
               "target": "Package",
