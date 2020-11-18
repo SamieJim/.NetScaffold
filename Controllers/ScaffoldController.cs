@@ -3,6 +3,7 @@ using AutoMapper;
 using Scaffolder.Repositories;
 using Scaffolder.Models;
 using Microsoft.AspNetCore.Mvc;
+using Scaffolder.DTOs;
 
 namespace Scaffolder.Controllers
 {
@@ -12,38 +13,42 @@ namespace Scaffolder.Controllers
     public class ScaffoldController : ControllerBase
     {
         private readonly IScaffolderRepo _repository;
+        private readonly IMapper _mapper;
 
         public ScaffoldController(IScaffolderRepo repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
        
         [HttpGet]
-        public ActionResult <IEnumerable<Scaffold>> GetAllCommmands()
+        public ActionResult <IEnumerable<ScaffoldReadDTO>> GetAllScaffolds()
         {
             var scaffoldItems = _repository.GetAllScaffold();
 
-            return Ok(scaffoldItems);
+            return Ok(_mapper.Map<IEnumerable<ScaffoldReadDTO>>(scaffoldItems));
         }
 
         [HttpGet("{id}", Name="GetScaffoldById")]
-        public ActionResult <Scaffold> GetScaffoldById(int id)
+        public ActionResult <ScaffoldReadDTO> GetScaffoldById(int id)
         {
             var scaffoldItem = _repository.GetScaffoldById(id);
             if(scaffoldItem != null)
             {
-                return Ok(scaffoldItem);
+                return Ok(_mapper.Map<ScaffoldReadDTO>(scaffoldItem));
             }
             return NotFound();
         }
 
         [HttpPost]
-        public ActionResult CreateScaffold(Scaffold obj)
+        public ActionResult CreateScaffold(ScaffoldCreateDTO obj)
         {
-            _repository.CreateScaffold(obj);
+            var scaffoldModel = _mapper.Map<Scaffold>(obj);
+            _repository.CreateScaffold(scaffoldModel);
             _repository.SaveChanges();
-            
-            return CreatedAtRoute(nameof(GetScaffoldById), new {Id = obj.Id}, obj);      
+
+            var commandReadDto = _mapper.Map<ScaffoldReadDTO>(scaffoldModel);
+            return CreatedAtRoute(nameof(GetScaffoldById), new {Id = commandReadDto.Id}, commandReadDto);      
         }
 
         [HttpDelete("{id}")]
