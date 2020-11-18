@@ -8,6 +8,8 @@ namespace Scaffolder.Profiles{
         public ScaffoldProfile(){
             CreateMap<Scaffold, ScaffoldReadDTO>();
             CreateMap<ScaffoldCreateDTO, Scaffold>();
+            CreateMap<Scaffold, ScaffoldUpdateDTO>();
+            CreateMap<ScaffoldUpdateDTO, Scaffold>();
         }
     }
 }

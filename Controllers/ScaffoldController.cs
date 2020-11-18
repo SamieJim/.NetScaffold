@@ -4,6 +4,7 @@ using Scaffolder.Repositories;
 using Scaffolder.Models;
 using Microsoft.AspNetCore.Mvc;
 using Scaffolder.DTOs;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Scaffolder.Controllers
 {
@@ -47,8 +48,8 @@ namespace Scaffolder.Controllers
             _repository.CreateScaffold(scaffoldModel);
             _repository.SaveChanges();
 
-            var commandReadDto = _mapper.Map<ScaffoldReadDTO>(scaffoldModel);
-            return CreatedAtRoute(nameof(GetScaffoldById), new {Id = commandReadDto.Id}, commandReadDto);      
+            var scaffoldReadDto = _mapper.Map<ScaffoldReadDTO>(scaffoldModel);
+            return CreatedAtRoute(nameof(GetScaffoldById), new {Id = scaffoldReadDto.Id}, scaffoldReadDto);      
         }
 
         [HttpDelete("{id}")]
@@ -66,10 +67,30 @@ namespace Scaffolder.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateScaffold(int id, Scaffold scaffold)
+        [HttpPatch("{id}")]
+        public ActionResult PartialscaffoldUpdate(int id, JsonPatchDocument<ScaffoldUpdateDTO> patchDoc)
         {
-            throw new System.NotImplementedException();
+            var scaffoldModelFromRepo = _repository.GetScaffoldById(id);
+            if(scaffoldModelFromRepo == null)
+            {
+                return NotFound();
+            }
+
+            var scaffoldToPatch = _mapper.Map<ScaffoldUpdateDTO>(scaffoldModelFromRepo);
+            patchDoc.ApplyTo(scaffoldToPatch, ModelState);
+
+            if(!TryValidateModel(scaffoldToPatch))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            _mapper.Map(scaffoldToPatch, scaffoldModelFromRepo);
+
+            _repository.UpdateScaffold(scaffoldModelFromRepo);
+
+            _repository.SaveChanges();
+
+            return NoContent();
         }
         
     }
