@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "FA9FqNbQmpR1WnZfH8AS11UneHIGJ5nyLY5OCTW2Dz5Akr8GZSyMhbpq+QmNTdciWJk3tdK5Hn9640y+QY6Zsg==",
+  "dgSpecHash": "c96FnvoDNnx0CTKwGxwGKLJ1IR+wQbiARQ/hylQA9ps+cqYpaYBgfckkMhKdkFr6aniud7EmIB1wNJAiC6kJ2A==",
   "success": true,
-  "projectFilePath": "/Users/jamie/Code/.NetScaffold/Scaffolder.csproj",
+  "projectFilePath": "/Users/jamie/Code/Checkout-ish/Payment/Payment.csproj",
   "expectedPackageFiles": [
     "/Users/jamie/.nuget/packages/automapper/10.1.0/automapper.10.1.0.nupkg.sha512",
     "/Users/jamie/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/8.1.0/automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "/Users/jamie/.nuget/packages/coverlet.collector/1.3.0/coverlet.collector.1.3.0.nupkg.sha512",
     "/Users/jamie/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/jamie/.nuget/packages/microsoft.aspnetcore.jsonpatch/3.1.3/microsoft.aspnetcore.jsonpatch.3.1.3.nupkg.sha512",
     "/Users/jamie/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/3.1.3/microsoft.aspnetcore.mvc.newtonsoftjson.3.1.3.nupkg.sha512",
+    "/Users/jamie/.nuget/packages/microsoft.codecoverage/16.8.0/microsoft.codecoverage.16.8.0.nupkg.sha512",
     "/Users/jamie/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/jamie/.nuget/packages/microsoft.data.sqlclient/2.0.1/microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "/Users/jamie/.nuget/packages/microsoft.data.sqlclient.sni.runtime/2.0.1/microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",

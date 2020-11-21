@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Scaffolder.Repositories;
+using Payment.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -17,7 +17,7 @@ using Newtonsoft.Json.Serialization;
 using Microsoft.OpenApi.Models;
 
 
-namespace Scaffolder
+namespace Payment
 {
     public class Startup
     {
@@ -31,8 +31,8 @@ namespace Scaffolder
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ScaffolderContext>(opt => opt.UseSqlServer
-                (Configuration.GetConnectionString("ScaffolderConnection")));
+            services.AddDbContext<PaymentContext>(opt => opt.UseSqlServer
+                (Configuration.GetConnectionString("PaymentConnection")));
 
             services.AddControllers().AddNewtonsoftJson(s => {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -40,11 +40,11 @@ namespace Scaffolder
             
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-            services.AddScoped<IScaffolderRepo, SqlScaffolderRepo>();
+            services.AddScoped<IPaymentRepo, SqlPaymentRepo>();
 
             //ADDED AFTER TUTORIAL
             services.AddSwaggerGen(c=> {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Scaffolder API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Payment API", Version = "v1" });
             });
 
         }
@@ -57,7 +57,7 @@ namespace Scaffolder
 
             //ADDED AFTER TUTORIAL
             app.UseSwaggerUI( c=> {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Scaffolder API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payment API V1");
             });
 
             if (env.IsDevelopment())
